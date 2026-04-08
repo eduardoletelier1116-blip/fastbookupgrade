@@ -6,89 +6,36 @@
     <title>FastBook Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --accent: #06e1f0; 
-            --bg: #000000;
-            --card: #0A0E17;
-            --text: #ffffff;
-            --border: #1E293B;
-        }
-
-        body { 
-            font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0;
-            display: flex; flex-direction: column; align-items: center; padding-bottom: 90px;
-        }
-
+        :root { --accent: #06e1f0; --bg: #000000; --card: #0A0E17; --text: #ffffff; --border: #1E293B; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; align-items: center; padding-bottom: 90px; }
         .app-wrapper { width: 100%; max-width: 500px; min-height: 100vh; }
-
-        .navbar {
-            background: var(--bg); padding: 12px 20px; display: flex; align-items: center; gap: 12px;
-            position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent);
-        }
-
+        .navbar { background: var(--bg); padding: 12px 20px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent); }
         .img-icono { height: 35px; }
         .logo-texto-custom { font-size: 22px; font-weight: 800; }
         .logo-texto-custom span { color: var(--accent); }
-
         .container { padding: 20px; }
-
-        .header-venta {
-            text-align: center; padding: 20px; background: rgba(6, 225, 240, 0.05);
-            border-radius: 15px; margin-bottom: 20px; border: 1px dashed var(--accent);
-        }
-
-        /* Total imponente con brillo */
-        .total-actual { 
-            font-size: 55px; 
-            font-weight: 900; 
-            color: var(--accent); 
-            text-shadow: 0 0 15px rgba(6, 225, 240, 0.3);
-        }
-
-        .card { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid var(--border); }
-
-        input { 
-            width: 100%; padding: 15px; border: 2px solid var(--border); 
-            border-radius: 10px; background: #0A0E17; color: white; 
-            box-sizing: border-box; font-size: 16px; margin-bottom: 10px;
-        }
-
+        .header-venta { text-align: center; padding: 20px; background: rgba(6, 225, 240, 0.05); border-radius: 15px; margin-bottom: 20px; border: 1px dashed var(--accent); }
+        .total-actual { font-size: 55px; font-weight: 900; color: var(--accent); text-shadow: 0 0 15px rgba(6, 225, 240, 0.3); }
+        .card { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 15px; }
+        input { width: 100%; padding: 15px; border: 2px solid var(--border); border-radius: 10px; background: #0A0E17; color: white; box-sizing: border-box; font-size: 16px; margin-bottom: 10px; }
         .item-fila { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #1e293b; }
-
         .btn-add { background: var(--accent); color: black; border: none; border-radius: 10px; width: 60px; height: 54px; font-size: 25px; font-weight: bold; cursor: pointer; }
-
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; padding: 20px; box-sizing: border-box; }
-
         .modal-content { background: var(--card); border: 1px solid var(--accent); border-radius: 20px; padding: 25px; max-width: 400px; margin: 50px auto; }
-
         .nav-bottom { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 10px 0; z-index: 2000; }
-
         .nav-item { background: none; border: none; color: #475569; font-size: 11px; font-weight: 700; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
-
         .nav-item.active { color: var(--accent); }
-
         .btn-pago { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--border); background: #1e293b; color: white; font-weight: 700; text-align: left; }
-
-        /* Estilos del Cargador */
-        .loader-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); z-index: 9999; flex-direction: column;
-            justify-content: center; align-items: center;
-        }
-        .spinner {
-            width: 50px; height: 50px; border: 5px solid rgba(6, 225, 240, 0.2);
-            border-top: 5px solid var(--accent); border-radius: 50%;
-            animation: spin 1s linear infinite; margin-bottom: 15px;
-        }
+        .loader-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; }
+        .spinner { width: 50px; height: 50px; border: 5px solid rgba(6, 225, 240, 0.2); border-top: 5px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .loader-text { color: var(--accent); font-weight: 700; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
     <div id="loader" class="loader-overlay">
         <div class="spinner"></div>
-        <div class="loader-text">GUARDANDO VENTA...</div>
+        <div style="color:var(--accent); font-weight:700;">PROCESANDO...</div>
     </div>
 
     <div class="app-wrapper">
@@ -98,12 +45,9 @@
         </div>
 
         <div class="container" id="vista-vender">
-            <div class="header-venta">
-                <div class="total-actual" id="txt-total-actual">$0</div>
-            </div>
+            <div class="header-venta"><div class="total-actual" id="txt-total-actual">$0</div></div>
             <div class="card">
-                <input type="text" id="producto" list="sugerencias" placeholder="¿Qué vendes?">
-                <datalist id="sugerencias"></datalist>
+                <input type="text" id="producto" list="sugerencias" placeholder="¿Qué vendes?"><datalist id="sugerencias"></datalist>
                 <div style="display:flex; gap:10px;">
                     <input type="number" id="precio" placeholder="Precio $" inputmode="numeric">
                     <button class="btn-add" onclick="agregarAlCarrito()">+</button>
@@ -119,7 +63,7 @@
         </div>
 
         <div class="container" id="vista-deudores" style="display:none;">
-            <h2 style="color:var(--accent);">Deudores</h2>
+            <h2 style="color:var(--accent);">Deudores Pendientes</h2>
             <div id="lista-deudores"></div>
         </div>
     </div>
@@ -132,9 +76,19 @@
             <button class="btn-pago" onclick="document.getElementById('seccion-fiado').style.display='block'">📝 Fiado</button>
             <div id="seccion-fiado" style="display:none; margin-top:15px;">
                 <input type="text" id="nombre-cliente" placeholder="Nombre del cliente...">
-                <button style="width:100%; background:var(--accent); padding:12px; border:none; border-radius:8px; font-weight:bold;" onclick="finalizarVenta('Fiado')">GUARDAR DEUDA</button>
+                <button style="width:100%; background:var(--accent); padding:12px; border:none; border-radius:8px; font-weight:bold; color:black;" onclick="finalizarVenta('Fiado')">GUARDAR DEUDA</button>
             </div>
             <button onclick="cerrarModal()" style="width:100%; background:none; border:none; color:#64748b; margin-top:15px;">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modal-cobro" class="modal">
+        <div class="modal-content">
+            <h3 style="margin-top:0; color:var(--accent);">Cobrar Deuda</h3>
+            <p id="info-deuda" style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px;"></p>
+            <input type="text" id="vendedor-cobro" placeholder="¿Quién recibe el dinero?">
+            <button style="width:100%; background:var(--accent); padding:15px; border:none; border-radius:12px; font-weight:800; color:black; cursor:pointer;" onclick="procesarCobro()">REGISTRAR PAGO</button>
+            <button onclick="document.getElementById('modal-cobro').style.display='none'" style="width:100%; background:none; border:none; color:#64748b; margin-top:15px;">Cancelar</button>
         </div>
     </div>
 
@@ -147,7 +101,8 @@
     <script>
         let carrito = [];
         let datosServidor = { productos: [], detalleHoy: [], deudores: [] };
-        const urlScript = "https://script.google.com/macros/s/AKfycbz8wL-Tu92gfzWXUrjEERPkIBGawrAbIH0XCVO5hj1hK3JTsmVszHa8BUW6vEFa5pj7JA/exec"; 
+        let deudaSeleccionada = null; // Para guardar temporalmente qué deuda estamos cobrando
+        const urlScript = "https://script.google.com/macros/s/AKfycbykP9DdL-kxYLxzk_oVE5xNMigxSBESE23Tn1G40J2ouzipQqUMSNE7vpfboaG85MJZ/exec"; 
 
         window.onload = cargarDatos;
 
@@ -155,7 +110,6 @@
             fetch(urlScript + "?t=" + Date.now()).then(r => r.json()).then(data => {
                 datosServidor = data;
                 document.getElementById('sugerencias').innerHTML = data.productos.map(p => `<option value="${p}">`).join('');
-                // Inicializar vistas con datos cargados
                 renderBitacora();
                 renderDeudores();
             });
@@ -176,9 +130,9 @@
             lista.innerHTML = carrito.map(item => `
                 <div class="item-fila">
                     <div><strong>${item.producto}</strong><br><small>$${item.precio}</small></div>
-                    <div>
-                        <button onclick="editarItem(${item.id})" style="background:none; border:none; cursor:pointer;">✏️</button>
-                        <button onclick="eliminarItem(${item.id})" style="background:none; border:none; cursor:pointer;">🗑️</button>
+                    <div style="display:flex; gap:15px;">
+                        <span onclick="editarItem(${item.id})" style="cursor:pointer;">✏️</span>
+                        <span onclick="eliminarItem(${item.id})" style="cursor:pointer;">🗑️</span>
                     </div>
                 </div>
             `).join('');
@@ -186,7 +140,6 @@
         }
 
         function eliminarItem(id) { carrito = carrito.filter(i => i.id !== id); actualizarVista(); }
-        
         function editarItem(id) {
             const i = carrito.find(x => x.id === id);
             document.getElementById('producto').value = i.producto;
@@ -195,37 +148,16 @@
         }
 
         function abrirCierreVenta() { document.getElementById('modal-pago').style.display = 'block'; }
-        function cerrarModal() { 
-            document.getElementById('modal-pago').style.display = 'none'; 
-            document.getElementById('seccion-fiado').style.display = 'none';
-        }
+        function cerrarModal() { document.getElementById('modal-pago').style.display = 'none'; document.getElementById('seccion-fiado').style.display = 'none'; }
 
         function finalizarVenta(metodo) {
             const cliente = metodo === 'Fiado' ? document.getElementById('nombre-cliente').value : 'Venta Directa';
-            if (metodo === 'Fiado' && !cliente) return alert("Por favor, ingresa el nombre del cliente");
-
-            // Mostrar cargador y bloquear interfaz
+            if (metodo === 'Fiado' && !cliente) return alert("Ingresa el nombre del cliente");
             document.getElementById('loader').style.display = 'flex';
             cerrarModal();
-
-            const datosVenta = {
-                items: carrito,
-                total: carrito.reduce((s, i) => s + i.precio, 0),
-                pago: metodo,
-                cliente: cliente
-            };
-
+            const datosVenta = { items: carrito, total: carrito.reduce((s, i) => s + i.precio, 0), pago: metodo, cliente: cliente };
             fetch(urlScript, { method: "POST", mode: "no-cors", body: JSON.stringify(datosVenta) })
-            .then(() => { 
-                setTimeout(() => {
-                    alert("✅ ¡Venta Registrada!"); 
-                    location.reload(); 
-                }, 500);
-            })
-            .catch(err => {
-                document.getElementById('loader').style.display = 'none';
-                alert("Error: " + err);
-            });
+            .then(() => { setTimeout(() => { alert("✅ Venta Guardada"); location.reload(); }, 500); });
         }
 
         function cambiarVista(v) {
@@ -234,73 +166,83 @@
             document.getElementById('vista-deudores').style.display = v === 'deudores' ? 'block' : 'none';
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-nav-' + v).classList.add('active');
-            if (v === 'bitacora') renderBitacora();
-            if (v === 'deudores') renderDeudores();
         }
 
         function renderBitacora() {
             const lista = document.getElementById('lista-ventas-dia');
-            if (!datosServidor.detalleHoy || datosServidor.detalleHoy.length === 0) { 
-                lista.innerHTML = "<p style='text-align:center; color:#64748b;'>Sin ventas hoy.</p>"; 
-                return; 
+            if (!datosServidor.detalleHoy || datosServidor.detalleHoy.length === 0) {
+                lista.innerHTML = "<p style='text-align:center; color:#64748b;'>Sin ventas hoy.</p>";
+                return;
             }
-            
             const agrupadas = {};
             datosServidor.detalleHoy.forEach(it => {
                 if (!agrupadas[it.idVenta]) {
-                    let horaLimpia = it.hora;
-                    if (it.hora && (it.hora.includes("GMT") || it.hora.includes("T"))) {
-                        const d = new Date(it.hora);
-                        horaLimpia = d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-                    }
-                    agrupadas[it.idVenta] = { hora: horaLimpia, pago: it.pago, cliente: it.cliente, productos: [], total: 0 };
+                    agrupadas[it.idVenta] = { hora: it.hora, pago: it.pago, cliente: it.cliente, productos: [], total: 0 };
                 }
                 agrupadas[it.idVenta].productos.push(it);
                 agrupadas[it.idVenta].total += it.precio;
             });
-
             lista.innerHTML = Object.values(agrupadas).reverse().map(g => `
-                <div class="card" style="margin-bottom:15px; border-color:var(--accent);">
+                <div class="card" style="border-color:var(--accent);">
                     <div style="display:flex; justify-content:space-between; border-bottom:1px solid #1e293b; padding-bottom:5px; margin-bottom:8px;">
                         <span style="color:var(--accent); font-weight:700;">🕒 ${g.hora}</span>
                         <span style="font-size:12px; color:#64748b;">${g.pago} ${g.cliente !== 'Venta Directa' ? '('+g.cliente+')' : ''}</span>
                     </div>
-                    ${g.productos.map(p => `<div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:2px;"><span>${p.nombre}</span><span>$${p.precio.toLocaleString()}</span></div>`).join('')}
-                    <div style="text-align:right; border-top:1px dashed #1e293b; margin-top:8px; padding-top:5px; font-weight:800; color:var(--accent); font-size:18px;">Total: $${g.total.toLocaleString()}</div>
+                    ${g.productos.map(p => `<div style="display:flex; justify-content:space-between; font-size:14px;"><span>${p.nombre}</span><span>$${p.precio.toLocaleString()}</span></div>`).join('')}
+                    <div style="text-align:right; border-top:1px dashed #1e293b; margin-top:8px; padding-top:5px; font-weight:800; color:var(--accent);">Total: $${g.total.toLocaleString()}</div>
                 </div>
             `).join('');
         }
 
         function renderDeudores() {
             const lista = document.getElementById('lista-deudores');
-            if (!datosServidor.deudores || datosServidor.deudores.length === 0) { 
-                lista.innerHTML = "<p style='text-align:center; color:#64748b;'>Nadie debe nada.</p>"; 
-                return; 
+            if (!datosServidor.deudores || datosServidor.deudores.length === 0) {
+                lista.innerHTML = "<p style='text-align:center; color:#64748b;'>Nadie debe nada.</p>";
+                return;
             }
-
-            lista.innerHTML = datosServidor.deudores.map(d => {
-                let horaLimpia = d.hora;
-                if (d.hora && (d.hora.includes("GMT") || d.hora.includes("T"))) {
-                    const dateObj = new Date(d.hora);
-                    horaLimpia = dateObj.getHours() + ":" + (dateObj.getMinutes() < 10 ? '0' : '') + dateObj.getMinutes();
-                }
-                let fechaLimpia = d.fecha;
-                if (d.fecha && d.fecha.includes("GMT")) {
-                    fechaLimpia = new Date(d.fecha).toLocaleDateString();
-                }
-
-                return `
-                    <div class="item-fila" style="border: 1px solid var(--accent); margin-bottom:12px; padding:15px; border-radius:15px; background: rgba(6, 225, 240, 0.02);">
-                        <div style="flex-grow:1;">
-                            <strong style="font-size:18px; color:var(--text);">${d.nombre}</strong><br>
-                            <small style="color:#64748b;">📅 ${fechaLimpia} - 🕒 ${horaLimpia}</small>
-                        </div>
-                        <div style="text-align:right;">
-                            <strong style="color:var(--accent); font-size:22px;">$${d.monto.toLocaleString()}</strong>
-                        </div>
+            lista.innerHTML = datosServidor.deudores.map(d => `
+                <div class="item-fila" style="border: 1px solid var(--accent); margin-bottom:12px; padding:15px; border-radius:15px; background: rgba(6, 225, 240, 0.02); cursor:pointer;" 
+                     onclick="abrirModalCobro('${d.idVenta}', '${d.nombre}', ${d.monto})">
+                    <div style="flex-grow:1;">
+                        <strong style="font-size:18px; color:var(--text);">${d.nombre}</strong><br>
+                        <small style="color:#64748b;">📅 ${d.fecha} - 🕒 ${d.hora}</small>
                     </div>
-                `;
-            }).join('');
+                    <div style="text-align:right;">
+                        <strong style="color:var(--accent); font-size:22px;">$${d.monto.toLocaleString()}</strong>
+                        <div style="font-size:10px; color:var(--accent); font-weight:bold;">TAP PARA PAGAR</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function abrirModalCobro(idVenta, nombre, monto) {
+            deudaSeleccionada = { idVenta, nombre, monto };
+            document.getElementById('info-deuda').innerText = `${nombre} pagará $${monto.toLocaleString()}`;
+            document.getElementById('modal-cobro').style.display = 'block';
+        }
+
+        function procesarCobro() {
+            const vend = document.getElementById('vendedor-cobro').value;
+            if (!vend) return alert("Escribe quién recibe el dinero");
+
+            document.getElementById('loader').style.display = 'flex';
+            document.getElementById('modal-cobro').style.display = 'none';
+
+            const pack = { 
+                accion: "cobrar", 
+                idVenta: deudaSeleccionada.idVenta, 
+                vendedor: vend, 
+                cliente: deudaSeleccionada.nombre, 
+                monto: deudaSeleccionada.monto 
+            };
+
+            fetch(urlScript, { method: "POST", mode: "no-cors", body: JSON.stringify(pack) })
+            .then(() => { 
+                setTimeout(() => { 
+                    alert("✅ Pago registrado y deuda saldada"); 
+                    location.reload(); 
+                }, 500); 
+            });
         }
     </script>
 </body>
